@@ -154,6 +154,7 @@ sub main() {
     my $cmd = "$valgrind_prefix $exe -s1 ACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGTG -s2 ACGTGTTCGTCGTATGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAG -a ANY > thal.tmp 2>&1";
     my $r = _nowarn_system($cmd);
     open X, 'thal.tmp';         # Get the test output
+    print $foo;
     @foo = <X>;                 # Snarf it
     close X;
     # Check the output.....

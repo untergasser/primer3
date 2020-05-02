@@ -57,9 +57,6 @@ jobs:
     - name: perl thal_test.pl --windows
       run: perl thal_test.pl --windows
       working-directory: ./test
-    - name: perl masker_test.pl --windows
-      run: perl masker_test.pl --windows
-      working-directory: ./test
     - name: perl p3test.pl --windows
       run: perl p3test.pl --windows
       working-directory: ./test
