@@ -256,7 +256,7 @@ primer_test: test
 
 test: $(PRIMER_EXE) $(NTDPAL_EXE) $(NTTHAL_EXE)
 ifeq ($(TESTOPTS),--windows)
-	cd ../test & $(WINMAKE) test TESTOPTS=$(TESTOPTS)
+	cd ../test & $(WINMAKE) TESTOPTS=$(TESTOPTS)
 else
 	cd ../test; make test
 endif
