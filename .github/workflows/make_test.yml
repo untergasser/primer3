@@ -16,9 +16,25 @@ jobs:
     - name: make 
       run: make
       working-directory: ./src
-    - name: make test
-      run: make test
-      working-directory: ./src
+    - name: perl cmdline_test.pl
+      run: perl cmdline_test.pl
+      working-directory: ./test
+    - name: perl oligotm_test.pl
+      run: perl oligotm_test.pl
+      working-directory: ./test
+    - name: perl dpal_test.pl
+      run: perl dpal_test.pl
+      working-directory: ./test
+    - name: perl thal_test.pl
+      run: perl thal_test.pl
+      working-directory: ./test
+    - name: perl masker_test.pl
+      run: perl masker_test.pl
+      working-directory: ./test
+    - name: perl p3test.pl
+      run: perl p3test.pl
+      working-directory: ./test
+
 
   build-windows:
 
@@ -32,3 +48,19 @@ jobs:
     - name: perl cmdline_test.pl --windows
       run: perl cmdline_test.pl --windows
       working-directory: ./test
+    - name: perl oligotm_test.pl --windows
+      run: perl oligotm_test.pl --windows
+      working-directory: ./test
+    - name: perl dpal_test.pl --windows
+      run: perl dpal_test.pl --windows
+      working-directory: ./test
+    - name: perl thal_test.pl --windows
+      run: perl thal_test.pl --windows
+      working-directory: ./test
+    - name: perl masker_test.pl --windows
+      run: perl masker_test.pl --windows
+      working-directory: ./test
+    - name: perl p3test.pl --windows
+      run: perl p3test.pl --windows
+      working-directory: ./test
+
