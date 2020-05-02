@@ -19,6 +19,8 @@ jobs:
       run: echo "Hello World!"
     - name: cd src
       run: cd src
+    - name: dir2
+      run: ls -alF
     - name: make
       run: make
     - name: make test
