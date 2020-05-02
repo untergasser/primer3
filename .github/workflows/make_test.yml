@@ -29,7 +29,6 @@ jobs:
     - name: make TESTOPTS=--windows
       run: make TESTOPTS=--windows
       working-directory: ./src
-    - name: make test TESTOPTS=--windows
-      run: make test TESTOPTS=--windows
-      working-directory: ./src
-
+    - name: perl cmdline_test.pl --windows
+      run: perl cmdline_test.pl --windows
+      working-directory: ./test
