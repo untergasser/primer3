@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: dir
+      run: ls -alF
     - name: hello
       run: echo "Hello World!"
     - name: cd src
