@@ -42,6 +42,13 @@ WINMAKE=mingw32-make
 # See ../src/Makefile for detailed instructions on how to use TESTOPTS
 # The only valid non-empty values for TESTOPTS are --valgrind and --windows
 TESTOPTS =
+TESTOPTS2 = $(TESTOPTS)
+ifeq ($(TESTOPTS),--valgrinda)
+    TESTOPTS = --valgrind
+endif
+ifeq ($(TESTOPTS),--valgrindb)
+    TESTOPTS = --valgrind
+endif
 
 
 ifeq ($(TESTOPTS),--windows)
@@ -63,7 +70,7 @@ testcore:
 ifeq ($(TESTOPTS),--windows)
 	echo 'TESTING primer3_core' & perl p3test.pl $(TESTOPTS)
 else
-	echo; echo; echo 'TESTING primer3_core'; echo; perl p3test.pl $(TESTOPTS)
+	echo; echo; echo 'TESTING primer3_core'; echo; perl p3test.pl $(TESTOPTS2)
 endif
 
 testdpal:
