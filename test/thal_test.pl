@@ -151,7 +151,7 @@ sub main() {
     # Test error handling on over-long input sequence:
     print "Error handling of too-long sequence...\n";
     my @foo=();
-    my $cmd = "$valgrind_prefix " . $exe  . "-s1 ACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGTG -s2 ACGTGTTCGTCGTATGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAG -a ANY > thal.tmp 2>&1";
+    my $cmd = "$valgrind_prefix " . $exe  . " -s1 ACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGTG -s2 ACGTGTTCGTCGTATGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAG -a ANY > thal.tmp 2>&1";
     my $r = _nowarn_system($cmd);
     open X, 'thal.tmp';         # Get the test output
     @foo = <X>;                 # Snarf it
