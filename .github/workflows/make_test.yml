@@ -36,14 +36,12 @@ jobs:
       working-directory: ./test
 
 
-  build-valgrind-a:
+  build-paranoid-regular:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: sudo apt install -y valgrind
-      run: sudo apt install -y valgrind
     - name: make
       run: make
       working-directory: ./src
@@ -55,7 +53,7 @@ jobs:
       working-directory: ./src
 
 
-  build-valgrind-b:
+  build-paranoid-valgrind:
 
     runs-on: ubuntu-latest
 
