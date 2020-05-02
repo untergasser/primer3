@@ -91,7 +91,7 @@ endif
 
 makeexes:
 ifeq ($(TESTOPTS),--windows)
-	cd ../src & $(WINMAKE)
+	cd ../src & $(WINMAKE) TESTOPTS=$(TESTOPTS)
 else
 	cd ../src; make
 endif
@@ -99,13 +99,13 @@ endif
 clean:
 ifeq ($(TESTOPTS),--windows)
 	echo 'CLEAN UP TEST DIRECTORIES'
-	del /Q /F primer1_list_tmp\*
-	del /Q /F primer1_th_list_tmp\*
-	del /Q /F primer_list_tmp\*
-	del /Q /F th-w-other-tasks_list_tmp\*
-	del /Q /F primer_global_err\*.tmp primer_global_err\*.tmp2 primer_global_err\*.bak
+	del /Q /F primer1_list_tmp/*
+	del /Q /F primer1_th_list_tmp/*
+	del /Q /F primer_list_tmp/*
+	del /Q /F th-w-other-tasks_list_tmp/*
+	del /Q /F primer_global_err/*.tmp primer_global_err/*.tmp2 primer_global_err/*.bak
 	del /Q /F *.tmp *.bak *.tmp.err *~
-	del /Q /F hyb_probe_only.for hyb_probe_only.int 
+	del /Q /F hyb_probe_only.for hyb_probe_only.int
 	del /Q /F right_only.for right_only.rev left_only.for
 	del /Q /F pcr_primers_and_io.int pcr_primers_and_io.rev pcr_primers_and_io.for
 	del /Q /F pcr_primers.rev pcr_primers.for
