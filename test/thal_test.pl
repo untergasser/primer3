@@ -150,14 +150,10 @@ sub main() {
     # First test
     # Test error handling on over-long input sequence:
     print "Error handling of too-long sequence...\n";
-    my @foo=();
     my $cmd = "$valgrind_prefix $exe -s1 ACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGTG -s2 ACGTGTTCGTCGTATGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAG -a ANY > thal.tmp 2>&1";
-    if ($winFlag) {
-        $cmd = "..\\src\\ntthal.exe -s1 ACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGTG -s2 ACGTGTTCGTCGTATGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAG -a ANY > thal.tmp 2>&1";
-    }
     my $r = _nowarn_system($cmd);
     open X, 'thal.tmp';         # Get the test output
-    @foo = <X>;                 # Snarf it
+    my @foo = <X>;              # Snarf it
     close X;
     # Check the output.....
     if ($foo[0] eq "Error: Both sequences longer than 60 for thermodynamic alignment\n") {
