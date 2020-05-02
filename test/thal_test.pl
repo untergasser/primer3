@@ -138,7 +138,7 @@ sub main() {
         . " --show-reachable=yes --log-file=ntthal.%0.4d.valg ";
 
     if ($winFlag) {
-        $exe = '..\\src\\ntthal.exe';
+        $exe = '../src/ntthal.exe';
     }
 
     # Look for the ntthal executable
@@ -152,10 +152,8 @@ sub main() {
     print "Error handling of too-long sequence...\n";
     my @foo=();
     my $cmd = "$valgrind_prefix $exe -s1 ACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAGTG -s2 ACGTGTTCGTCGTATGACGTGTTCGTCGTAGACGTGTTCGTCGTAGACGTGTTCGTCGTAG -a ANY > thal.tmp 2>&1";
-    print ($cmd);
     my $r = _nowarn_system($cmd);
     open X, 'thal.tmp';         # Get the test output
-    print (<X>);
     @foo = <X>;                 # Snarf it
     close X;
     # Check the output.....
