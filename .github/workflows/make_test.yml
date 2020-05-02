@@ -1,0 +1,23 @@
+name: make test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-ubuntu:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: hello
+      run: echo "Hello World!"
+    - name: cd src
+      run: cd src
+    - name: make
+      run: make
+    - name: make test
+      run: make test
