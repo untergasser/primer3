@@ -132,7 +132,7 @@ all: $(EXES) $(LIBRARIES)
 
 clean_src:
 ifeq ($(TESTOPTS),--windows)
-	del /Q /F *.o $(EXES) *~ $(LIBRARIES) $(example_files) core ..\*~
+	del /Q /F *.o $(EXES) *~ $(LIBRARIES) $(example_files) core ../*~
 else
 	-rm -f *.o $(EXES) *~ $(LIBRARIES) $(DYNLIBS) $(example_files) core ../*~
 endif
@@ -182,7 +182,7 @@ $(LIBPRIMER3_DYN): libprimer3.o p3_seq_lib.o
 $(LIBMASKER): masker.o
 	$(AR) rv $@ masker.o
 	$(RANLIB) $@
-               
+
 $(LIBMASKER_DYN): masker.o
 	$(CC) -shared -W1,-soname,libmasker.so.1 -o $(LIBMASKER_DYN) masker.o
 
