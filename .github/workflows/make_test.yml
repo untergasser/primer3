@@ -13,12 +13,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: dir
-      run: ls -alF
-      working-directory: ./src
     - name: make
       run: make
       working-directory: ./src
     - name: make test
       run: make test
       working-directory: ./src
+
+  build-windows:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: make
+      run: make
+      working-directory: ./src
+    - name: make test
+      run: make test
+      working-directory: ./src
+
