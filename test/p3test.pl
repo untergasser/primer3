@@ -394,6 +394,12 @@ sub main() {
             next;
         }
 
+        if ($winFlag && (($test eq 'primer_masker_formatted')
+            || ($test eq 'primer_masker_formatted'))) {
+            print "[PRIMER_MASK_TEMPLATE not supported on Windows]\n";
+            next;
+        }
+
 	my $default_version;
 	if ($default_version2{$test}) {
 	    $default_version = '--default_version=2';

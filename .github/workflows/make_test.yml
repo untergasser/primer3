@@ -36,6 +36,36 @@ jobs:
       working-directory: ./test
 
 
+jobs:
+  build-macOS:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: make
+      run: make
+      working-directory: ./src
+    - name: perl cmdline_test.pl
+      run: perl cmdline_test.pl
+      working-directory: ./test
+    - name: perl oligotm_test.pl
+      run: perl oligotm_test.pl
+      working-directory: ./test
+    - name: perl dpal_test.pl
+      run: perl dpal_test.pl
+      working-directory: ./test
+    - name: perl thal_test.pl
+      run: perl thal_test.pl
+      working-directory: ./test
+    - name: perl masker_test.pl
+      run: perl masker_test.pl
+      working-directory: ./test
+    - name: perl p3test.pl
+      run: perl p3test.pl
+      working-directory: ./test
+
+
   build-windows:
 
     runs-on: windows-latest
