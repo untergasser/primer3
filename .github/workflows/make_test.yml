@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make 
+    - name: make
       run: make
       working-directory: ./src
     - name: perl cmdline_test.pl
@@ -34,6 +34,23 @@ jobs:
     - name: perl p3test.pl
       run: perl p3test.pl
       working-directory: ./test
+
+
+  build-valgrind:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: make
+      run: make
+      working-directory: ./src
+    - name: make test
+      run: make test
+      working-directory: ./src
+    - name: sh paranoid_tests.sh
+      run: sh paranoid_tests.sh
+      working-directory: ./src
 
 
   build-macOS:
@@ -89,4 +106,3 @@ jobs:
     - name: perl p3test.pl --windows
       run: perl p3test.pl --windows
       working-directory: ./test
-

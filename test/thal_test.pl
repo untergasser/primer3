@@ -163,8 +163,8 @@ sub main() {
             print "$foo[0]\n1.................................. [FAILED]\n";
             $exit_status = -1;
         }
+        unlink("thal.tmp");
     }
-    unlink("thal.tmp");
     # ==================================================
     # Additional tests using runtest()
     runtest('Default implementations + alignment',
