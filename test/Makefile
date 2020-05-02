@@ -91,7 +91,7 @@ endif
 
 makeexes:
 ifeq ($(TESTOPTS),--windows)
-	cd ..\src & $(WINMAKE)
+	cd ../src & $(WINMAKE)
 else
 	cd ../src; make
 endif
