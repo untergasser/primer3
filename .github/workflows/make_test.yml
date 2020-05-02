@@ -36,7 +36,6 @@ jobs:
       working-directory: ./test
 
 
-jobs:
   build-macOS:
 
     runs-on: macOS-latest
