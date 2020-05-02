@@ -139,7 +139,7 @@ endif
 
 clean: clean_src
 ifeq ($(TESTOPTS),--windows)
-	cd ..\test & $(WINMAKE) clean TESTOPTS=$(TESTOPTS)
+	cd ../test & $(WINMAKE) clean TESTOPTS=$(TESTOPTS)
 else
 	cd ../test/; make clean
 endif
@@ -256,7 +256,7 @@ primer_test: test
 
 test: $(PRIMER_EXE) $(NTDPAL_EXE) $(NTTHAL_EXE)
 ifeq ($(TESTOPTS),--windows)
-	cd ..\test & $(WINMAKE) TESTOPTS=$(TESTOPTS)
+	cd ../test & $(WINMAKE) TESTOPTS=$(TESTOPTS)
 else
 	cd ../test; make test
 endif
@@ -308,3 +308,4 @@ install: $(EXES) $(LIBRARIES)
 # debug it.
 #
 # ======================================================================
+
