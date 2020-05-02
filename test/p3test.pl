@@ -130,13 +130,7 @@ sub main() {
     $winFlag = defined $args{'windows'};
     $verbose = defined $args{'verbose'};
     $fastFlag = defined $args{'fast'};
-    $do_valgrindA = $args{'valgrinda'};
-    $do_valgrindB = $args{'valgrindb'};
     $do_valgrind = $args{'valgrind'};
-    if ($do_valgrindA || $do_valgrindB) {
-        $do_valgrind = 1;
-    }
-
     if ($winFlag && $do_valgrind) {
         print "$0: Cannot specify both --valgrind and --windows\n";
         exit -1;
@@ -403,18 +397,6 @@ sub main() {
         if ($winFlag && (($test eq 'primer_masker_formatted')
             || ($test eq 'primer_masker_formatted'))) {
             print "[PRIMER_MASK_TEMPLATE not supported on Windows]\n";
-            next;
-        }
-
-        if ($do_valgrindA && (($test eq 'primer1_th')
-            || ($test eq 'primer_lib_amb_codes'))) {
-            print "[skiped in valgrind a run]\n";
-            next;
-        }
-
-        if ($winFlag && ($test ne 'primer_masker_formatted')
-            && ($test ne 'primer_masker_formatted')) {
-            print "[skiped in valgrind b run]\n";
             next;
         }
 
