@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make
+    - name: make 
       run: make
       working-directory: ./src
     - name: make test
@@ -26,10 +26,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make
-      run: make
+    - name: make TESTOPTS=--windows
+      run: make TESTOPTS=--windows
       working-directory: ./src
-    - name: make test
-      run: make test
+    - name: make test TESTOPTS=--windows
+      run: make test TESTOPTS=--windows
       working-directory: ./src
 
