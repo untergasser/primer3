@@ -44,13 +44,19 @@ WINMAKE=mingw32-make
 TESTOPTS =
 
 
-test: makeexes testcmdline testtm testdpal testthal testmasker testcore
-	echo; echo; echo "Testing completed. You must check the test output for the string FAILED"; echo; echo;
+test:
+ifeq ($(TESTOPTS),--windows)
+        testcmdline testtm testdpal testthal testmasker testcore
+        echo; echo; echo "Testing completed. You must check the test output for the string FAILED"; echo; echo;
+else
+        makeexes testcmdline testtm testdpal testthal testmasker testcore
+        echo; echo; echo "Testing completed. You must check the test output for the string FAILED"; echo; echo;
+endif
 
 testcmdline:
 ifeq ($(TESTOPTS),--windows)
 	perl cmdline_test.pl $(TESTOPTS)
-else 
+else
 	perl cmdline_test.pl $(TESTOPTS)
 endif
 
