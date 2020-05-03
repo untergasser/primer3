@@ -34,20 +34,20 @@ jobs:
       working-directory: ./test
     - name: mkdir results
       run: mkdir results
-    - name: tar -zcvf results/src.tar.gz ./src
-      run: tar -zcvf results/src.tar.gz ./src
-    - name: tar -zcvf results/test.tar.gz ./test
-      run: tar -zcvf results/test.tar.gz ./test
+    - name: tar -zcvf results/build-ubuntu-src.tar.gz ./src
+      run: tar -zcvf results/build-ubuntu-src.tar.gz ./src
+    - name: tar -zcvf results/build-ubuntu-test.tar.gz ./test
+      run: tar -zcvf results/build-ubuntu-test.tar.gz ./test
     - name: Upload math result for job 1
       uses: actions/upload-artifact@v1
       with:
-        name: src
-        path: results/src.tar.gz
+        name: build-ubuntu-src.tar.gz
+        path: results/build-ubuntu-src.tar.gz
     - name: Upload math result for job 1
       uses: actions/upload-artifact@v1
       with:
-        name: test
-        path: results/test.tar.gz
+        name: build-ubuntu-test.tar.gz
+        path: results/build-ubuntu-test.tar.gz
 
 
   build-paranoid-regular:
@@ -68,6 +68,22 @@ jobs:
     - name: make test
       run: make test
       working-directory: ./src
+    - name: mkdir results
+      run: mkdir results
+    - name: tar -zcvf results/build-paranoid-regular-a-src.tar.gz ./src
+      run: tar -zcvf results/build-paranoid-regular-a-src.tar.gz ./src
+    - name: tar -zcvf results/build-paranoid-regular-a-test.tar.gz ./test
+      run: tar -zcvf results/build-paranoid-regular-a-test.tar.gz ./test
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-paranoid-regular-a-src.tar.gz
+        path: results/build-paranoid-regular-a-src.tar.gz
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-paranoid-regular-a-test.tar.gz
+        path: results/build-paranoid-regular-a-test.tar.gz
     - name: make clean
       run: make clean
       working-directory: ./src
@@ -77,6 +93,20 @@ jobs:
     - name: make test
       run: make test
       working-directory: ./src
+    - name: tar -zcvf results/build-paranoid-regular-b-src.tar.gz ./src
+      run: tar -zcvf results/build-paranoid-regular-b-src.tar.gz ./src
+    - name: tar -zcvf results/build-paranoid-regular-b-test.tar.gz ./test
+      run: tar -zcvf results/build-paranoid-regular-b-test.tar.gz ./test
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-paranoid-regular-b-src.tar.gz
+        path: results/build-paranoid-regular-b-src.tar.gz
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-paranoid-regular-b-test.tar.gz
+        path: results/build-paranoid-regular-b-test.tar.gz
 
 
   build-paranoid-valgrind:
@@ -99,6 +129,22 @@ jobs:
     - name: make TESTOPTS=--valgrind
       run: make TESTOPTS=--valgrind
       working-directory: ./test
+    - name: mkdir results
+      run: mkdir results
+    - name: tar -zcvf results/build-paranoid-valgrind-src.tar.gz ./src
+      run: tar -zcvf results/build-paranoid-valgrind-src.tar.gz ./src
+    - name: tar -zcvf results/build-paranoid-valgrind-test.tar.gz ./test
+      run: tar -zcvf results/build-paranoid-valgrind-test.tar.gz ./test
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-paranoid-valgrind-src.tar.gz
+        path: results/build-paranoid-valgrind-src.tar.gz
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-paranoid-valgrind-test.tar.gz
+        path: results/build-paranoid-valgrind-test.tar.gz
 
 
   build-macOS:
@@ -128,6 +174,22 @@ jobs:
     - name: perl p3test.pl
       run: perl p3test.pl
       working-directory: ./test
+    - name: mkdir results
+      run: mkdir results
+    - name: tar -zcvf results/build-macOS-src.tar.gz ./src
+      run: tar -zcvf results/build-macOS-src.tar.gz ./src
+    - name: tar -zcvf results/build-macOS-test.tar.gz ./test
+      run: tar -zcvf results/build-macOS-test.tar.gz ./test
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-macOS-src.tar.gz
+        path: results/build-macOS-src.tar.gz
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-macOS-test.tar.gz
+        path: results/build-macOS-test.tar.gz
 
 
   build-windows:
@@ -154,3 +216,19 @@ jobs:
     - name: perl p3test.pl --windows
       run: perl p3test.pl --windows
       working-directory: ./test
+    - name: mkdir results
+      run: mkdir results
+    - name: powershell Compress-Archive src results/build-windows-src.zip
+      run: powershell Compress-Archive src results/build-windows-src.zip
+    - name: powershell Compress-Archive test results/build-windows-test.zip
+      run: powershell Compress-Archive test results/build-windows-test.zip
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-windows-src.zip
+        path: results/build-windows-src.zip
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-windows-test.zip
+        path: results/build-windows-test.zip
