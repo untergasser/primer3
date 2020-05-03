@@ -34,10 +34,10 @@ jobs:
       working-directory: ./test
     - name: mkdir results
       run: mkdir results
-    - name: tar -zcvf results/src.tar.gz /src
-      run: tar -zcvf results/src.tar.gz /src
-    - name: tar -zcvf results/test.tar.gz /test
-      run: tar -zcvf results/test.tar.gz /test
+    - name: tar -zcvf results/src.tar.gz ./src
+      run: tar -zcvf results/src.tar.gz ./src
+    - name: tar -zcvf results/test.tar.gz ./test
+      run: tar -zcvf results/test.tar.gz ./test
     - name: Upload math result for job 1
       uses: actions/upload-artifact@v1
       with:
