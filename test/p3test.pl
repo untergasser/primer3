@@ -58,7 +58,7 @@ sub _nowarn_system($);
 our $def_executable = "../src/primer3_core";
 our $exe = '../src/primer3_core';
 our $set_files = '../test/';
-our ($verbose, $do_valgrind, $winFlag, $fastFlag, $onetest);
+our ($verbose, $do_valgrind, $do_valgrinda, $do_valgrindb, $winFlag, $fastFlag, $onetest);
 
 our %signo;
 
@@ -112,6 +112,8 @@ sub main() {
     # --exe=.../src/primer3_core
     if (!GetOptions(\%args,
                     'valgrind',
+                    'valgrinda',
+                    'valgrindb',
                     'windows',
                     'fast',
                     'verbose',
@@ -120,7 +122,7 @@ sub main() {
                     )) {
         print "Usage: perl p3test.pl \\\n",
         "    [--executable <primer3 executable>] [ --onetest <test_name> ] ",
-	"[ --valgrind ] [  --verbose ] [--windows] [--fast]\n",
+        "[ --valgrind ] [  --verbose ] [--windows] [--fast]\n",
         "\n",
         "    where <primer3 executable> defaults to ../src/primer3_core\n";
         exit -1;
@@ -131,6 +133,12 @@ sub main() {
     $verbose = defined $args{'verbose'};
     $fastFlag = defined $args{'fast'};
     $do_valgrind = $args{'valgrind'};
+    $do_valgrinda = $args{'valgrinda'};
+    $do_valgrindb = $args{'valgrindb'};
+    if ($do_valgrinda || $do_valgrindb) {
+        $do_valgrind = 1;
+    }
+
     if ($winFlag && $do_valgrind) {
         print "$0: Cannot specify both --valgrind and --windows\n";
         exit -1;
@@ -381,7 +389,7 @@ sub main() {
 
         # We are inside the for loop here....
         print "$test...";
-	my $test_start_time = time();
+        my $test_start_time = time();
 
         if ($fastFlag && (($test eq 'th-w-other-tasks')
             || ($test eq 'primer_obj_fn')
@@ -390,7 +398,7 @@ sub main() {
             || ($test eq 'primer_new_tasks_th')
 	        || ($test eq 'primer_thermod_align')
 	        || ($test eq 'primer_thermod_align_formatted'))) {
-            print "[skiped in fast mode]\n";
+            print "[skipped in fast mode]\n";
             next;
         }
 
@@ -400,19 +408,28 @@ sub main() {
             next;
         }
 
-	my $default_version;
-	if ($default_version2{$test}) {
-	    $default_version = '--default_version=2';
-	} else {
-	    $default_version = '--default_version=1';
-	}
+        if ($do_valgrindb && ($test ne 'primer_lib_amb_codes')) {
+            print "[skipped in fast valgrind mode b]\n";
+            next;
+        }
+
+        my $default_version;
+        if ($default_version2{$test}) {
+            $default_version = '--default_version=2';
+        } else {
+            $default_version = '--default_version=1';
+        }
 
         if ($test eq 'primer_lib_amb_codes') {
             if ($fastFlag) {
-                print "[skiped in fast mode]\n";       
+                print "[skipped in fast mode]\n";
                 next;
             }
-            print 
+            if ($do_valgrinda) {
+                print "[skipped in fast valgrind mode a]\n";
+                next;
+            }
+            print
                 "\nNOTE: this test takes _much_ longer than the others ",
                 "(5 to 20 minutes or more).\n",
                 "starting $test at ", scalar(localtime), "...";
@@ -433,7 +450,7 @@ sub main() {
 
         my $r;                  # Return value for tests
 
-	my %list_test 
+        my %list_test
 	    = ('primer' => 1,
 	       'primer1' => 1,
 	       'primer1_th' => 1,

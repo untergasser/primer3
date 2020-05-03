@@ -44,18 +44,20 @@ WINMAKE=mingw32-make
 TESTOPTS =
 
 
-ifeq ($(TESTOPTS),--windows)
-test: testcmdline testtm testdpal testthal testmasker testcore
-	echo; echo; echo "Testing completed. You must check the test output for the string FAILED"; echo; echo;
-else
 test: makeexes testcmdline testtm testdpal testthal testmasker testcore
 	echo; echo; echo "Testing completed. You must check the test output for the string FAILED"; echo; echo;
-endif
+
+valgrnda: makeexes testcmdline testtm testdpal testthal testmasker testcorea
+	echo; echo; echo "Testing completed. You must check the test output for the string FAILED"; echo; echo;
+
+valgrndb: testcoreb
+	echo; echo; echo "Testing completed. You must check the test output for the string FAILED"; echo; echo;
+
 
 testcmdline:
 ifeq ($(TESTOPTS),--windows)
 	perl cmdline_test.pl $(TESTOPTS)
-else
+else 
 	perl cmdline_test.pl $(TESTOPTS)
 endif
 
@@ -65,6 +67,12 @@ ifeq ($(TESTOPTS),--windows)
 else
 	echo; echo; echo 'TESTING primer3_core'; echo; perl p3test.pl $(TESTOPTS)
 endif
+
+testcorea:
+	echo; echo; echo 'TESTING primer3_core'; echo; perl p3test.pl --valgrinda
+
+testcoreb:
+	echo; echo; echo 'TESTING primer3_core'; echo; perl p3test.pl --valgrindb
 
 testdpal:
 ifeq ($(TESTOPTS),--windows)
@@ -96,7 +104,7 @@ endif
 
 makeexes:
 ifeq ($(TESTOPTS),--windows)
-	cd ../src & $(WINMAKE) TESTOPTS=$(TESTOPTS)
+	cd ../src & $(WINMAKE)
 else
 	cd ../src; make
 endif
